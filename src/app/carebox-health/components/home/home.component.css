@@ -1,0 +1,12 @@
+.container {
+   padding: 30px;
+
+}
+.top{
+    padding: 0 45px;
+}
+.top h1{
+    padding-left: 5px;
+    padding-top: 5px;
+    color: #823FAB;
+}
