@@ -75,7 +75,8 @@
   }
   mat-card-title {
     font-weight: bold;
-    font-size: 1.3em;
+    /* font-size: 1.3em; */
+    font-size: 15px!important;
  
 }
 .content-row{
