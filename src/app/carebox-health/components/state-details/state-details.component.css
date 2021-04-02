@@ -2,12 +2,13 @@
  .tbl-container {
     background: #F7F8FA; 
     border:1px solid #e6e6e6;
-    padding: 0 15px;
+    margin-top: -19px;
+    padding:10px 15px 0 15px;
     /* margin-top: 100px;  */
   
 }
 .tbl-container h2{
-    border-bottom: 4px solid #99ccff;
+    border-bottom: 4px solid #823FAB;
 }
 
 table {
@@ -15,6 +16,7 @@ table {
     border-spacing: 1px;
     border-collapse: collapse; 
     border: 1px solid #e6e6e6;
+    background: #F7F8FA;
 
 }
 
@@ -40,11 +42,21 @@ td:hover {
 }
 
 td, th {
-    /* padding: 0 10px !important; */
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+th.mat-header-cell:first-of-type
+/* , td.mat-cell:first-of-type */
+/* , td.mat-footer-cell:first-of-type  */
+{
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 17px;
+  vertical-align: top;
 }
 .header-row-1{
-    vertical-align: top;
-    font-size: 1.3em;
+    text-align:left;
+    font-size: 1.2em;
 }
 .state-name{
     font-size: 2.1em;

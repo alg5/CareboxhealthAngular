@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { MAX_WIDTH_MOBILE, StateModel } from '../../models';
 
 @Component({
@@ -16,18 +17,18 @@ import { MAX_WIDTH_MOBILE, StateModel } from '../../models';
 })
 export class StateDetailsComponent implements OnInit {
 
-  // @Input() stateInfo :StateModel;
   private _stateInfo: StateModel;
-    
-  @Input() set stateInfo(value: StateModel) {
+   @Input() set stateInfo(value: StateModel) {
   
      this._stateInfo = value;
      if (value)
      {
-      //  if (value.twitter)
         this.twitterLink = value.twitter ? `https://twitter.com/${value.twitter?.replace('@', '')}` : '' ;
         this.historicalDataLink = `https://covidtracking.com/data/state/${value.name.toLowerCase().split(' ').join('-')}/cases` ;   
         this.currentDataLink = `https://covidtracking.com/data/state/${value.name.toLowerCase().split(' ').join('-')}` ;   
+        const arr = new Array<StateModel>();
+        arr.push(value);
+        this.dataSource = new MatTableDataSource(arr);
        
      }
   
@@ -38,9 +39,25 @@ export class StateDetailsComponent implements OnInit {
       return this._stateInfo;
   
   }
-
+  @Output() backToTopEvent = new EventEmitter<null>();
+  dataSource: MatTableDataSource<StateModel>;
+  displayedColumns: string[] = 
+      [
+        'positive'
+        , 'negative'
+        , 'pending'
+        , 'hospitalizedCurrently'
+        , 'hospitalizedCumulative'
+        , 'inIcuCurrently'
+        , 'inIcuCumulative'
+        , 'onVentilatorCurrently'    
+        , 'onVentilatorCumulative'     
+        , 'recovered'
+        , 'death'   
+        , 'states'       
+      ];
   isMobile:boolean;
-  showNotes:boolean;
+  showNotes:boolean = true;
   isMobileOld:boolean;
   twitterLink:string;
   historicalDataLink:string;
@@ -61,32 +78,25 @@ export class StateDetailsComponent implements OnInit {
     , Death: "Death"
     , TotalTestResults: "Total Test Results"
     , PositiveNegative: "Positive + Negative"     
-    // , ErrorMessageRequares: "This field is mandatory"
-    // , ErrorMessageRowsMax: `Number of rows must be less or equal ${this.maxRows}`
   }
   constructor() { }
 
   ngOnInit(): void {
     this.isMobile = this.isMobileOld = window.innerWidth <= MAX_WIDTH_MOBILE;
-    // console.log("ngOnInit", this.stateInfo, this.twitterLink);
-   
+  
   }
-  // gethistoricalDataFragment(item:StateModel){
-  //   let res = item.name.split(' ').join('-')
-  //   // const arr = 
-  // }
-  // ngAfterViewInit()
-  // {
-  //   console.log("ngAfterViewInit", this.stateInfo, this.twitterLink);
-  // }
+
   onResize(event) {
     this.isMobile = event.target.innerWidth <= MAX_WIDTH_MOBILE;
     console.log("onResize:isMobile", this.isMobile);
     if (this.isMobile != this.isMobileOld){
       this.isMobileOld = this.isMobile;
-      // this.cardsInRow = !this.isMobile ? 4 : 1;
-      // this.filteredData();
     }
+  }
+  backToTop()
+  {
+    this.backToTopEvent.emit();
+    window.scrollTo(0, 0);
   }
 
 }

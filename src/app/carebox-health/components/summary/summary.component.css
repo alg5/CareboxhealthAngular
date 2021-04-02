@@ -124,7 +124,8 @@ th {
     font-weight: bold;
     font-size: 14px;
     border-top: none;
-    background: #e5eeff;
+    /* background: #e5eeff; */
+    background: #a9fffb;
     /* border-right: 1px solid #e6e6e6; */
     border-bottom: 2px solid white;
     border-right: 2px solid white;
@@ -140,13 +141,38 @@ td:hover {
 
 td, th {
     /* padding: 0 10px !important; */
+    padding-left: 5px !important;
 }
-.crypto-sort{
-  /* border: 1px solid red; */
-  margin-left:2px;
+
+th.mat-header-cell:first-of-type
+/* , td.mat-cell:first-of-type */
+/* , td.mat-footer-cell:first-of-type  */
+{
+  padding-left: 5px;
+  padding-top: 17px;
   vertical-align: top;
+  /* border: 1px solid red; */
+
 }
-.header-row-1{
+
+
+
+
+
+
+.bs-table .header-row-1{
     vertical-align: top;
     font-size: 1.3em;
+}
+.header-row-1{
+  text-align:left;
+  font-size: 1.3em;
+}
+
+.amtable
+{
+  /* border: 1px solid red; */
+}
+mat-table{
+  border: 1px solid red;
 }

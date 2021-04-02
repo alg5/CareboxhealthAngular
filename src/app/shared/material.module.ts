@@ -15,6 +15,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -37,6 +38,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     , MatToolbarModule
     , MatCardModule
     , MatGridListModule
+    , MatTabsModule
   ],
   exports: [
 
@@ -55,6 +57,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     , MatToolbarModule
     , MatCardModule
     , MatGridListModule
+    , MatTabsModule
 
   ]
 })

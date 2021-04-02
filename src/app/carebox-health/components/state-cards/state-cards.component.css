@@ -8,7 +8,7 @@
 
 
 .container h2 {
-  border-bottom: 4px solid #99ccff;
+  border-bottom: 4px solid #823FAB;
   width:100%;
   margin-top: 20px;
 }
@@ -44,9 +44,8 @@
   
 }
 .tbl-container {
-    background: #99ccff;
-    /* background: #99ccff;  */
-       padding: 20px;
+    background: #823FAB;
+    padding: 20px;
 }
 .states-block{
     
@@ -73,6 +72,10 @@
     -ms-transform: rotate(-3deg);
     transform: rotate(-3deg); */
   }
+  mat-card{
+    box-shadow:none! important;
+  }
+  
   mat-card-title {
     font-weight: bold;
     /* font-size: 1.3em; */
@@ -135,7 +138,8 @@
 
 
 .item-container, .item-container.active {
-    background-color: #e5eeff;
+    /* background-color: #e5eeff; */
+    background-color: #a9fffb;
     transition: background-color 3s;
     height: 220px;
     width: 25%;
@@ -151,8 +155,8 @@
     cursor: pointer;
 }
 .item-container.active {
-  background-color: #ccdfff;
- 
+  /* background-color: #ccdfff; */
+  background-color: #2cd5c4;
 }
 .item-container-details{
   /* display:none; */
@@ -177,14 +181,15 @@
 .item-arrow-top{
   height: 0;
   width: 0;
-  border-top: 30px solid #ccdfff;
+  /* border-top: 30px solid #ccdfff; */
+  border-top: 30px solid #2cd5c4;
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
   position: absolute;
   bottom: -30px;
   left: 35%;
   z-index: 2;
-  transition: background-color 3s;
+  transition: background-color 5s;
   transition: border-top 1s ease-in-out;
   transition: border-left 1s ease-in-out;
   transition: border-right 1s ease-in-out;
@@ -199,7 +204,7 @@
   bottom: -34px;
   left: 35%;
   z-index: 1;
-  transition: background-color 3s;
+  transition: background-color 5s;
   transition: border-top 1s ease-in-out;
   transition: border-left 1s ease-in-out;
   transition: border-right 
@@ -210,7 +215,29 @@ mat-card-content{
 }
 
 
+.header {
+  /* height: 200px; */
+  width: 100%;
+  background: #eee;
+}
 
+.secondToolbar {
+position: fixed;
+background: #eee;
+top: 0;
+height: 0;
+opacity: 0;
+transition: opacity .25s ease-out, height .15s ease;
+cursor: default;
+user-select: none;
+}
+
+.sticky {
+height: 64px;
+opacity: 1;
+transition: opacity .25s ease-out, height .15s ease;
+z-index:10;
+}
 
 
 

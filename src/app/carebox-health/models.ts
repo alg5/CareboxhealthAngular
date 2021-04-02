@@ -1,4 +1,8 @@
 export const MAX_WIDTH_MOBILE = 760;
+// export interface StateGroup {
+//   letter: string;
+//   names: string[];
+// }
 export class SummaryModel
 {
     date: number;
@@ -29,22 +33,6 @@ export class SummaryModel
   }
   export class StateModel
   {
-    // "state":string;
-    // "notes":string;
-    // "covid19Site":string;
-    // "covid19SiteSecondary":string;
-    // "covid19SiteTertiary":string;
-    // "covid19SiteQuaternary":string;
-    // "covid19SiteQuinary":string;
-    // "twitter":"@Alaska_DHSS";
-    // "covid19SiteOld":string;
-    // "covidTrackingProjectPreferredTotalTestUnits":string;
-    // "covidTrackingProjectPreferredTotalTestField":string;
-    // "totalTestResultsField":string;
-    // "pui":string;
-    // "pum":boolean;
-    // "name":string;
-    // "fips":string
     checkTimeEt: Date;
     commercialScore: number;
     covid19Site: string;
@@ -115,4 +103,28 @@ export class SummaryModel
     totalTestsViral: number;
     twitter: string;
   };
-  
+  export class SummaryChartModel
+  {
+      Confirmed:number;
+      Deaths:number;
+      Recovered:number;
+      Active:number;
+      Date:Date;
+  }
+ /* date_stamp : Date; // "2020-01-23",
+    cnt_confirmed : number;
+    cnt_death : number;
+    cnt_recovered : number; */
+    // {
+    //   "Country":"United States of America",
+    //   "CountryCode":"","
+    //   Province":"",
+    //   "City":"",
+    //   "CityCode":"",
+    //   "Lat":"0","Lon":"0",
+    //   "Confirmed":28705881,
+    //   "Deaths":515683,
+    //   "Recovered":0,
+    //   "Active":28148586,
+    //   "Date":"2021-03-01T00:00:00Z"
+    // }

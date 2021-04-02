@@ -30,26 +30,6 @@ export class CareboxHealthService {
       }))
   };
 
-//   getStatesInfo( ): Observable<any>  {
-//     const res = `${ environment.apiUrl}statesinfo`;
-//     console.log("res", res);
-//     return this.http.get(res).pipe(map(data => {
-//      const obj = {'statesinfo': data};
-//     //  console.log(data);
-//      return  data;
-     
-//    }),
-//      catchError(err => {
-//        console.log("err: ", err);
-//        return throwError(err);
-//      }))
-//  };
-
-
-//  forkJoin(
-//   this.http.post<any[]>(URL, jsonBody1, postJson) .pipe(map((res) => res), catchError(e => of('Oops!'))),
-//   this.http.post<any[]>(URL, jsonBody2, postJson) .pipe(map((res) => res), catchError(e => of('Oops!')))
-// )
  getStatesAllInfo( ): Observable<any>  {
   const statesInfoUrl = `${ environment.apiUrl}statesinfo`;
   const statesCurrentUrl = `${ environment.apiUrl}statescurrent`;
@@ -78,6 +58,21 @@ export class CareboxHealthService {
 
     }),
 
+   catchError(err => {
+     console.log("err: ", err);
+     return throwError(err);
+   }))
+};
+
+getSummaryChartData( ): Observable<any>  {
+  const res = `${ environment.apiUrl}summarychart`;
+ //  console.log("res", res);
+  return this.http.get(res).pipe(map(data => {
+  //  const obj = {'summarychart': data[0]};
+  //  console.log(data);
+   return  data;
+   
+ }),
    catchError(err => {
      console.log("err: ", err);
      return throwError(err);

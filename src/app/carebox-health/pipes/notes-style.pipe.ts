@@ -46,7 +46,4 @@ export class NotesStylePipe implements PipeTransform {
     return res;
 }
   
-//   As of November 21, 2020
-//   March 12, 2020
-
 }

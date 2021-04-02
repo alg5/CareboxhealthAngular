@@ -9,16 +9,23 @@ import { HomeComponent } from './components/home/home.component';
 import { StateDetailsComponent } from './components/state-details/state-details.component';
 import { NullableNumberPipe } from './pipes/nullable-number.pipe';
 import { NotesStylePipe } from './pipes/notes-style.pipe';
-import { NotesFormatDirective } from './directives/notes-format.directive';
 import { MaterialModule } from '../shared/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SummaryChartLineComponent } from './components/summary-chart-line/summary-chart-line.component';
+import { ChartsModule } from 'ng2-charts';
+import { SafeUrlPipe } from './pipes/safe-url.pipe';
 
 @NgModule({
   declarations: [ SummaryComponent, StateCardsComponent, HomeComponent, StateDetailsComponent
-                  , NullableNumberPipe, NotesStylePipe, NotesFormatDirective],
+                  , NullableNumberPipe, NotesStylePipe, SafeUrlPipe
+                  , SummaryChartLineComponent],
   imports: [
     CommonModule,
     MaterialModule,
+    ReactiveFormsModule,
     CareboxHealthRoutingModule,
+    ChartsModule
+
     
   ],
   providers: [DecimalPipe],
