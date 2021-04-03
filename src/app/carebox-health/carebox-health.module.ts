@@ -14,11 +14,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SummaryChartLineComponent } from './components/summary-chart-line/summary-chart-line.component';
 import { ChartsModule } from 'ng2-charts';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { ChartTestComponent } from './components/chart-test/chart-test.component';
 
 @NgModule({
   declarations: [ SummaryComponent, StateCardsComponent, HomeComponent, StateDetailsComponent
                   , NullableNumberPipe, NotesStylePipe, SafeUrlPipe
-                  , SummaryChartLineComponent],
+                  , SummaryChartLineComponent, ChartTestComponent],
   imports: [
     CommonModule,
     MaterialModule,

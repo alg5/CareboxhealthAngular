@@ -39,28 +39,26 @@ export class SummaryChartLineComponent implements OnInit {
     const recoveredList = this.summaryChartList.map(x=>x.Recovered);
     const deathsList = this.summaryChartList.map(x=>x.Deaths);
     const activesList = this.summaryChartList.map(x=>x.Active);  
-   
-    const dataList = this.summaryChartList.map(x=> this.datePipe.transform(x.Date, 'shortDate'));  
-    console.log("dataList", dataList);
-    // this.lineChartLabels1 
-    // public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+    console.log("deathsList", deathsList);
+    this.lineChartLabels = this.summaryChartList.map(x=> this.datePipe.transform(x.Date, 'dd/MM')); 
     this.lineChartData =[
+      {data:activesList, label: 'Active' },
       {data:confirmedList, label: 'Confirmed' },
-      {data:recoveredList, label: 'Recovered' },
-      {data:deathsList, label: 'Deaths' },
-      {data:activesList, label: 'Active' , yAxisID: 'y-axis-1'},      
+      {data:recoveredList, label: 'Recovered' },      
+       {data:deathsList, label: 'Deaths' , yAxisID: 'y-axis-1'},
+     // {data:deathsList, label: 'Deaths' }      
     ]
+    
     this.chartReady = true;
 
   }
+  getRowColor(index: number):string{
+    return this.lineChartColors[index].backgroundColor[0];
+  }
 
-  public lineChartData2: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-    { data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1' }
-  ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChartOptions: (ChartOptions & { annotation: any }) = {
+  // public lineChartOptions: (ChartOptions & { annotation: any }) = {
+    public lineChartOptions: ChartOptions  = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -77,32 +75,41 @@ export class SummaryChartLineComponent implements OnInit {
           gridLines: {
             color: 'rgba(255,0,0,0.3)',
           },
-          ticks: {
-            fontColor: 'red',
-          }
+          // ticks: {
+          //   fontColor: 'red',
+          // }
         }
       ]
     },
-    annotation: {
-      annotations: [
-        {
-          type: 'line',
-          mode: 'vertical',
-          scaleID: 'x-axis-0',
-          value: 'March',
-          borderColor: 'orange',
-          borderWidth: 2,
-          label: {
-            enabled: true,
-            fontColor: 'orange',
-            content: 'LineAnno'
-          }
-        },
-      ],
-    },
+    // annotation: {
+    //   annotations: [
+    //     {
+    //       type: 'line',
+    //       mode: 'vertical',
+    //       scaleID: 'x-axis-0',
+    //       value: 'March',
+    //       borderColor: 'orange',
+    //       borderWidth: 2,
+    //       label: {
+    //         enabled: true,
+    //         fontColor: 'orange',
+    //         content: 'LineAnno'
+    //       }
+    //     },
+    //   ],
+    // },
   };
   public lineChartColors: Color[] = [
-    { // grey
+    { // green
+      backgroundColor: 'rgba(0,255,0,0.3)',
+      borderColor: 'green',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    },
+    {
+       // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
       borderColor: 'rgba(148,159,177,1)',
       pointBackgroundColor: 'rgba(148,159,177,1)',
@@ -126,23 +133,17 @@ export class SummaryChartLineComponent implements OnInit {
       pointHoverBackgroundColor: '#fff',
       pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     },
-    { // green
-      backgroundColor: 'rgba(0,255,0,0.3)',
-      borderColor: 'green',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
+    
   ];
 
 
 
   public lineChartData: ChartDataSets[];
-  lineChartLabels1: Label[];
+  lineChartLabels: Label[];
   public lineChartLegend = true;
   public lineChartType: ChartType = 'line';
-  public lineChartPlugins = [pluginAnnotations];
+  // public lineChartPlugins = [pluginAnnotations];
+  public lineChartPlugins = [];
   chartReady: boolean;
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
@@ -150,19 +151,24 @@ export class SummaryChartLineComponent implements OnInit {
   constructor(private datePipe: DatePipe) { }
 
   ngOnInit(): void {
+    console.log("ngOnInit", this.chart);
+    // this.chart.update();
   }
-  public randomize(): void {
-    for (let i = 0; i < this.lineChartData.length; i++) {
-      for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-        this.lineChartData[i].data[j] = this.generateNumber(i);
-      }
-    }
-    this.chart.update();
-  }
+  // ngAfterViewInit(){
+  //   console.log("ngAfterViewInit", this.chart);
+  // }
+  // public randomize(): void {
+  //   for (let i = 0; i < this.lineChartData.length; i++) {
+  //     for (let j = 0; j < this.lineChartData[i].data.length; j++) {
+  //       this.lineChartData[i].data[j] = this.generateNumber(i);
+  //     }
+  //   }
+  //   this.chart.update();
+  // }
 
-  private generateNumber(i: number): number {
-    return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
-  }
+  // private generateNumber(i: number): number {
+  //   return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
+  // }
 
   // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
@@ -170,7 +176,7 @@ export class SummaryChartLineComponent implements OnInit {
   }
 
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   public hideOne(): void {
@@ -178,14 +184,14 @@ export class SummaryChartLineComponent implements OnInit {
     this.chart.hideDataset(1, !isHidden);
   }
 
-  public pushOne(): void {
-    this.lineChartData.forEach((x, i) => {
-      const num = this.generateNumber(i);
-      const data: number[] = x.data as number[];
-      data.push(num);
-    });
-    this.lineChartLabels.push(`Label ${this.lineChartLabels.length}`);
-  }
+  // public pushOne(): void {
+  //   this.lineChartData.forEach((x, i) => {
+  //     const num = this.generateNumber(i);
+  //     const data: number[] = x.data as number[];
+  //     data.push(num);
+  //   });
+  //   this.lineChartLabels.push(`Label ${this.lineChartLabels.length}`);
+  // }
 
   public changeColor(): void {
     this.lineChartColors[2].borderColor = 'green';
