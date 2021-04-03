@@ -1,0 +1,90 @@
+
+
+   <div class="container">
+       
+    <h2>  {{translations.DateByText}}</h2>
+   
+
+    <div *ngIf="statesLstFiltered && statesLstFiltered.length > 0" class="cards-container">
+        <div class="header">
+            <!-- <mat-form-field appearance="fill" class='cbo-filter'>
+                <mat-label>{{translations.Choose}}</mat-label>
+                <mat-select (selectionChange)="onStateChange($event)">
+                    <mat-option *ngFor="let item of statesLst" [value]="item.state">
+                    {{item.name}} ({{item.state}})
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> -->
+        </div>
+          
+          <mat-toolbar class="secondToolbar" [ngClass]="{'mat-elevation-z5' : true, 'sticky' : isSticky}">
+            <!-- statesLstFiltered.length/2 == {{statesLstFiltered.length/2}} -->
+            <!-- <ng-container   *ngFor="let item of statesLstFiltered; let i=index;">
+                <a [routerLink]="['./']" fragment="{{item.state}}" data-index="{{i}}" title="{{item.name}}" (click)="onclickAnchor(item.state,i)" >{{item.state}}</a>&nbsp;
+                <span *ngIf="i == (statesLstFiltered.length/2 - 1)"><br />{{i}}</span>
+            </ng-container>
+            <div >qwerty</div> -->
+            <!-- <mat-form-field appearance="fill" class='cbo-filter'>
+                <mat-label>{{translations.Choose}}</mat-label>
+                <mat-select (selectionChange)="onStateChange($event)">
+                    <mat-option *ngFor="let item of statesLst" [value]="item.state">
+                    {{item.name}} ({{item.state}})
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> -->
+
+            <form [formGroup]="stateForm">
+                <mat-form-field>
+                  <mat-label>{{translations.Choose}}</mat-label>
+                  <input type="text"
+                         matInput
+                         formControlName="stateGroup"
+                         required
+                         [matAutocomplete]="autoGroup">
+                    <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)='onStateSelected($event.option.value)'>
+                      <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+                        <mat-option *ngFor="let name of group.names" [value]="name">
+                          {{name}}
+                        </mat-option>
+                    </mat-optgroup>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </form>
+
+
+
+          </mat-toolbar>
+
+          
+
+
+
+          <div>
+         
+        </div>
+        <ng-container   *ngFor="let item of statesLstFiltered; let i=index;">
+            <div   id="{{item.state}}"   [attr.data-index]="i"></div>
+            <mat-card  class=" item-container active" [class.active]="expandedElement === item" #containerItem  (click)="expandedElement = expandedElement === item ? null : item;onExpanded(item, i)">
+                <mat-card-header>
+                    <mat-card-title>{{item.name}}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content >
+                    <div class="content-row"> <span class="name">{{translations.TotalCases}}:</span> <span class="value">{{item.total  | nullablenumber}}</span></div>
+                    <div class="content-row"><span class="name">{{translations.NewCases}}:</span>  <span class="value">{{item.positiveIncrease | nullablenumber}}</span></div>
+                    <div class="content-row"><span class="name">{{translations.Nowhospitalized}}:</span>  <span class="value">{{item.hospitalizedCurrently | nullablenumber}}</span></div>
+                   <div *ngIf="expandedElement === item" class="item-arrow-top"></div>
+                   <div *ngIf="expandedElement === item" class="item-arrow-bottom"></div>
+                </mat-card-content>
+            </mat-card>
+            <div style="display:none"  class="item-container-details" *ngIf="(i+1) % cardsInRow == 0" id="card-details-{{(i+1) / cardsInRow}}">
+             <mat-card>
+                <app-state-details [stateInfo]="expandedElement" (backToTopEvent)="backtoTop()"></app-state-details>
+            </mat-card>
+            </div>
+        </ng-container> 
+
+
+    </div>
+
+</div>
+

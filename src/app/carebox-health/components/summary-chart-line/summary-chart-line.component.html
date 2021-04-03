@@ -1,3 +1,6 @@
+
+<h2> Total All Statuses by last 7 days </h2>
+<div *ngIf="!chartReady" class="loader"></div>
 <div class="flex" *ngIf="chartReady">
     <div class="flex-item">
       <div style="display: block;">
@@ -19,14 +22,9 @@
         <tr>
           <th *ngFor="let label of lineChartLabels">{{label}}</th>
         </tr>
-        <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i" [ngStyle]="{'background-color':getRowColor(i)}">
-          <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+        <tr *ngFor="let d of lineChartData; let i=index"  [ngStyle]="{'background-color':getRowColor(i)}">
+          <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j] | nullablenumber}}</td>
         </tr>
       </table>
-      <!-- <button mat-button mat-raised-button color="primary" (click)="randomize()">Randomize</button>
-      <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button>
-      <button mat-button mat-raised-button color="primary" (click)="changeColor()">Recolor</button>
-      <button mat-button mat-raised-button color="primary" (click)="hideOne()">Toggle Series B</button>
-      <button mat-button mat-raised-button color="primary" (click)="changeLabel()">Change Label</button> -->
     </div>
   </div>

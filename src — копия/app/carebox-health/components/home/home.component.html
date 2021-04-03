@@ -1,0 +1,26 @@
+<div class="top">
+    <div class="logo"><img src="assets/images/Carebox-Logo-full.png"></div>
+    <h1>The COVID Tracking Page</h1>
+</div>
+
+
+<div id="top" class="container">
+    <mat-tab-group animationDuration="0ms">
+        <mat-tab label="The Data">
+            <app-summary></app-summary>
+            <app-state-cards></app-state-cards>
+        </mat-tab>
+        <mat-tab label="Charts">
+            <div *ngIf="newcasesbystatesUrl" class="_80de4 _8be39" id="chart-mobile-2KiG6zDcE4UCzRlbPeiMvL">
+                <iframe frameborder="0" allowtransparency="true" allowfullscreen="true" title="Data Visualization" marginheight="0" marginwidth="0" scrolling="no" style="display: block; width: 100%; height: 900px; visibility: visible;" 
+                    src="{{newcasesbystatesUrl}}"
+                ></iframe>
+            </div>
+        </mat-tab>
+        <mat-tab label="Third">Content 3</mat-tab>
+      </mat-tab-group>
+      
+    <!-- <app-summary></app-summary>
+    <app-state-cards></app-state-cards> -->
+</div>
+

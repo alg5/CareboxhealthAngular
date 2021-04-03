@@ -33,7 +33,6 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.isMobile = this.isMobileOld = window.innerWidth <= MAX_WIDTH_MOBILE;
-    console.log("ngOnInit:isMobile", this.isMobile);
     this.getSummaryData();
   }
   getSummaryData(){

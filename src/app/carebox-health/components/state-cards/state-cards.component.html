@@ -6,33 +6,8 @@
    
 
     <div *ngIf="statesLstFiltered && statesLstFiltered.length > 0" class="cards-container">
-        <div class="header">
-            <!-- <mat-form-field appearance="fill" class='cbo-filter'>
-                <mat-label>{{translations.Choose}}</mat-label>
-                <mat-select (selectionChange)="onStateChange($event)">
-                    <mat-option *ngFor="let item of statesLst" [value]="item.state">
-                    {{item.name}} ({{item.state}})
-                    </mat-option>
-                </mat-select>
-            </mat-form-field> -->
-        </div>
-          
+                
           <mat-toolbar class="secondToolbar" [ngClass]="{'mat-elevation-z5' : true, 'sticky' : isSticky}">
-            <!-- statesLstFiltered.length/2 == {{statesLstFiltered.length/2}} -->
-            <!-- <ng-container   *ngFor="let item of statesLstFiltered; let i=index;">
-                <a [routerLink]="['./']" fragment="{{item.state}}" data-index="{{i}}" title="{{item.name}}" (click)="onclickAnchor(item.state,i)" >{{item.state}}</a>&nbsp;
-                <span *ngIf="i == (statesLstFiltered.length/2 - 1)"><br />{{i}}</span>
-            </ng-container>
-            <div >qwerty</div> -->
-            <!-- <mat-form-field appearance="fill" class='cbo-filter'>
-                <mat-label>{{translations.Choose}}</mat-label>
-                <mat-select (selectionChange)="onStateChange($event)">
-                    <mat-option *ngFor="let item of statesLst" [value]="item.state">
-                    {{item.name}} ({{item.state}})
-                    </mat-option>
-                </mat-select>
-            </mat-form-field> -->
-
             <form [formGroup]="stateForm">
                 <mat-form-field>
                   <mat-label>{{translations.Choose}}</mat-label>
@@ -50,19 +25,10 @@
                   </mat-autocomplete>
                 </mat-form-field>
               </form>
-
-
-
           </mat-toolbar>
-
-          
-
-
-
           <div>
-         
-        </div>
-        <ng-container   *ngFor="let item of statesLstFiltered; let i=index;">
+         </div>
+        <ng-container   *ngFor="let item of statesLstFiltered; let i=index;" (window:resize)="onResize($event)">
             <div   id="{{item.state}}"   [attr.data-index]="i"></div>
             <mat-card  class=" item-container active" [class.active]="expandedElement === item" #containerItem  (click)="expandedElement = expandedElement === item ? null : item;onExpanded(item, i)">
                 <mat-card-header>

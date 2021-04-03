@@ -12,28 +12,24 @@
         </mat-tab>
         <mat-tab label="Charts" >
             <div >
-                <app-summary-chart-line [summaryChartList]="summaryChartList"></app-summary-chart-line>
+                <mat-tab-group animationDuration="0ms" (selectedIndexChange)="selectedIndexInnerChange($event)">
+                    <mat-tab label="USA">
+                        <app-summary-chart-line [summaryChartList]="summaryChartList"></app-summary-chart-line>
+                    </mat-tab>
+                    <mat-tab label="The World">
+                        <app-total-world-char [totalWorldCharData]="totalWorldCharData"></app-total-world-char>
+                    </mat-tab>                    
+                </mat-tab-group>
+                
             </div>
         </mat-tab>        
-        <mat-tab label="Third">
+        <!-- <mat-tab label="Third">
             <div  class="_80de4 _8be39" id="chart-mobile-2KiG6zDcE4UCzRlbPeiMvL">
-                <!-- <iframe frameborder="0" allowtransparency="true" allowfullscreen="true" title="Data Visualization" marginheight="0" marginwidth="0" scrolling="no" style="display: block; width: 100%; height: 900px; visibility: visible;" 
-                    src="{{newcasesbystatesUrl}}"
-                ></iframe> -->
-                <!-- src="https://public.tableau.com/views/CTPWebGallerymobile/6_Casesper1M?language=en&display_count=y&publish=yes&:origin=viz_share_link&:embed=y&:showVizHome=n&:apiID=host1"  -->
-                <!-- <iframe   frameborder="0" allowtransparency="true" allowfullscreen="true" title="Data Visualization" 
-                    marginheight="0" marginwidth="0" scrolling="no"
-                     
-                    src="https://www.youtube.com&output=embed"
-                     style="display: block; width: 100%; height: 700px; visibility: visible;">
-                </iframe>  -->
+               
                 <app-chart-test></app-chart-test>
             </div>
-        </mat-tab>
+        </mat-tab> -->
 
       </mat-tab-group>
-      
-    <!-- <app-summary></app-summary>
-    <app-state-cards></app-state-cards> -->
 </div>
 

@@ -1,0 +1,76 @@
+
+<div class="tbl-container"  *ngIf="stateInfo" >
+
+    <div class="state-name"> <a  href="{{currentDataLink}}" target="_blank" >{{stateInfo.name}}</a></div>
+    <table class="table table-striped table-hover bs-table" (window:resize)="onResize($event)">
+        <thead>
+            <tr >
+                <th scope="col" rowspan="2" class="header-row-1">{{translations.Cases }}</th>
+                <th scope="col" colspan="2"class="header-row-1">{{translations.Tests}}</th>
+                <th scope="col" colspan="2"class="header-row-1">{{translations.Hospitalized}}</th>
+                <th scope="col" colspan="2"class="header-row-1">{{translations.InCPU}}</th>
+                <th scope="col" colspan="2"class="header-row-1">{{translations.OnVentilator}}</th>
+                <th scope="col" colspan="2"class="header-row-1">{{translations.Outcomes}}</th>
+                <th scope="col"class="header-row-1">{{translations.TotalTestResults}}</th>
+            </tr>
+            <tr >
+                <th scope="col">{{translations.Negative}}</th>
+                <th scope="col">{{translations.Pending}}</th>
+                <th scope="col">{{translations.Currently}}</th>
+                <th scope="col">{{translations.Cumulative}}</th>
+                <th scope="col">{{translations.Currently}}</th>
+                <th scope="col">{{translations.Cumulative}}</th>
+                <th scope="col">{{translations.Currently}}</th>
+                <th scope="col">{{translations.Cumulative}}</th>
+                <th scope="col">{{translations.Recovered}}</th>
+                <th scope="col">{{translations.Death}}</th>
+                <th scope="col">{{translations.PositiveNegative}}</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>{{stateInfo.positive | nullablenumber}}</td>
+                  <td>{{stateInfo.negative | nullablenumber}}</td>
+                  <td>{{stateInfo.pending | nullablenumber}}</td>
+                  <td>{{stateInfo.hospitalizedCurrently | nullablenumber}}</td>
+                  <td>{{stateInfo.hospitalizedCumulative  | nullablenumber}}</td>
+                  <td>{{stateInfo.inIcuCurrently | nullablenumber}}</td>
+                  <td>{{stateInfo.inIcuCumulative  | nullablenumber}}</td>
+                  <td>{{stateInfo.onVentilatorCurrently | nullablenumber}}</td>
+                  <td>{{stateInfo.onVentilatorCumulative  | nullablenumber}}</td>
+                  <td>{{stateInfo.recovered  | nullablenumber}}</td>
+                  <td>{{stateInfo.death | nullablenumber}}</td>
+                  <td>{{stateInfo.positive + stateInfo.negative | nullablenumber}}</td>
+              </tr>
+          </tbody>
+    </table>
+    <div class="bottom-block">
+        <div class="last-update">State’s last reported updated time {{stateInfo.lastUpdateEt}} am ET</div>
+        <div class="links-block"> 
+            <a *ngIf="twitterLink" href="{{twitterLink}}" target="_blank" >Official Twitter</a>
+            <a  href="{{stateInfo.covid19Site}}" target="_blank" >Best Current Data Source</a>
+            <a  href="{{stateInfo.covid19SiteSecondary}}" target="_blank" >Secondary Data Source</a>
+            <a  href="{{historicalDataLink}}" target="_blank" >Historical data</a>
+        </div>
+        <div class = "notes-back-block">
+            <div class="show-notes" (click) = "showNotes = !showNotes" >
+                <span *ngIf="!showNotes">See notes</span>
+                <span *ngIf="showNotes">Hide notes</span>
+            </div>
+            <div *ngIf="!showNotes" class="black-block-on-top"> 
+                <a href="#top">Back to top</a>.
+            </div>
+        </div>
+        <div class="example-element-detail1"
+            [@notesExpand]="showNotes ? 'expanded' : 'collapsed'">
+            <article [innerHTML]="stateInfo.notes | notesstyle"></article>
+        </div>
+        <!-- <article [innerHTML]="stateInfo.notes | notesstyle"></article> -->
+
+        <div *ngIf="showNotes" class="back-block"> 
+            <a href="#top">Back to top</a>
+            <!-- <a [routerLink]="['./']" fragment="top1">Back to top</a> -->
+        </div>
+        <h2>&nbsp; </h2>
+    </div>  
+</div>

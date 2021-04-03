@@ -66,13 +66,34 @@ export class CareboxHealthService {
 
 getSummaryChartData( ): Observable<any>  {
   const res = `${ environment.apiUrl}summarychart`;
- //  console.log("res", res);
-  return this.http.get(res).pipe(map(data => {
-  //  const obj = {'summarychart': data[0]};
-  //  console.log(data);
+   return this.http.get(res).pipe(map(data => {
    return  data;
    
  }),
+   catchError(err => {
+     console.log("err: ", err);
+     return throwError(err);
+   }))
+};
+
+getAllCharsData( ): Observable<any>  {
+  const summarychartUrl = `${ environment.apiUrl}summarychart`;
+  const totalworldchartUrl = `${ environment.apiUrl}totalworldchart`;
+  const summarychartRequest = this.http.get(summarychartUrl) ;
+  const  totalworldchartRequest = this.http.get( totalworldchartUrl) ;
+  return forkJoin(
+    [
+      summarychartRequest,
+      totalworldchartRequest,
+    ])
+  // .pipe(tap(([res1, res2]) => {
+   .pipe(map(res => { 
+       let obj1 = res[0];
+      const resData = {summary: res[0], totalworld: res[1]["data"] };
+      return resData;
+
+    }),
+
    catchError(err => {
      console.log("err: ", err);
      return throwError(err);

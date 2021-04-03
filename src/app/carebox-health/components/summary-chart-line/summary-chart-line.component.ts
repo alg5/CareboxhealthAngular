@@ -34,7 +34,6 @@ export class SummaryChartLineComponent implements OnInit {
 
   fillChartValues()
   {
-    console.log("fillChartValues", this.summaryChartList);
     const confirmedList = this.summaryChartList.map(x=>x.Confirmed);
     const recoveredList = this.summaryChartList.map(x=>x.Recovered);
     const deathsList = this.summaryChartList.map(x=>x.Deaths);
@@ -43,22 +42,23 @@ export class SummaryChartLineComponent implements OnInit {
     console.log("deathsList", deathsList);
     this.lineChartLabels = this.summaryChartList.map(x=> this.datePipe.transform(x.Date, 'dd/MM')); 
     this.lineChartData =[
-      {data:activesList, label: 'Active' },
-      {data:confirmedList, label: 'Confirmed' },
-      {data:recoveredList, label: 'Recovered' },      
-       {data:deathsList, label: 'Deaths' , yAxisID: 'y-axis-1'},
-     // {data:deathsList, label: 'Deaths' }      
+        {data:activesList, label: 'Active', yAxisID: 'y-axis-0' },
+      {data:confirmedList, label: 'Confirmed', yAxisID: 'y-axis-1' },
+      {data:recoveredList, label: 'Recovered', yAxisID: 'y-axis-2' },      
+      {data:deathsList, label: 'Deaths', yAxisID: 'y-axis-3'}
+   
     ]
     
     this.chartReady = true;
 
   }
-  getRowColor(index: number):string{
-    return this.lineChartColors[index].backgroundColor[0];
+  getRowColor(index: number):string | string[]{
+    return this.lineChartColors[index].backgroundColor;
+
   }
 
-  // public lineChartOptions: (ChartOptions & { annotation: any }) = {
-    public lineChartOptions: ChartOptions  = {
+  
+  public lineChartOptions: ChartOptions  = {
     responsive: true,
     maintainAspectRatio: false,
     scales: {
@@ -68,7 +68,11 @@ export class SummaryChartLineComponent implements OnInit {
         {
           id: 'y-axis-0',
           position: 'left',
-        },
+          type: 'linear',
+	        gridLines: {
+            color: 'rgba(0,255,0,0.3)',
+          },display: true,
+	      },
         {
           id: 'y-axis-1',
           position: 'right',
@@ -78,27 +82,32 @@ export class SummaryChartLineComponent implements OnInit {
           // ticks: {
           //   fontColor: 'red',
           // }
-        }
+          type: 'linear',
+	        display: true,
+        },
+        {
+          id: 'y-axis-2',
+          position: 'left',
+          gridLines: {
+            color: 'rgba(0,0,255,0.3)',
+          },
+          type: 'linear',
+	        display: true,
+	      },
+        {
+          id: 'y-axis-3',
+          position: 'left',
+          gridLines: {
+            color: 'rgba(0,0,0,0.3)',
+          },
+          type: 'linear',
+	        display: true,
+	      },
       ]
     },
-    // annotation: {
-    //   annotations: [
-    //     {
-    //       type: 'line',
-    //       mode: 'vertical',
-    //       scaleID: 'x-axis-0',
-    //       value: 'March',
-    //       borderColor: 'orange',
-    //       borderWidth: 2,
-    //       label: {
-    //         enabled: true,
-    //         fontColor: 'orange',
-    //         content: 'LineAnno'
-    //       }
-    //     },
-    //   ],
-    // },
-  };
+  }  
+  
+  
   public lineChartColors: Color[] = [
     { // green
       backgroundColor: 'rgba(0,255,0,0.3)',
@@ -151,25 +160,9 @@ export class SummaryChartLineComponent implements OnInit {
   constructor(private datePipe: DatePipe) { }
 
   ngOnInit(): void {
-    console.log("ngOnInit", this.chart);
-    // this.chart.update();
+
   }
-  // ngAfterViewInit(){
-  //   console.log("ngAfterViewInit", this.chart);
-  // }
-  // public randomize(): void {
-  //   for (let i = 0; i < this.lineChartData.length; i++) {
-  //     for (let j = 0; j < this.lineChartData[i].data.length; j++) {
-  //       this.lineChartData[i].data[j] = this.generateNumber(i);
-  //     }
-  //   }
-  //   this.chart.update();
-  // }
-
-  // private generateNumber(i: number): number {
-  //   return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
-  // }
-
+ 
   // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
@@ -184,14 +177,7 @@ export class SummaryChartLineComponent implements OnInit {
     this.chart.hideDataset(1, !isHidden);
   }
 
-  // public pushOne(): void {
-  //   this.lineChartData.forEach((x, i) => {
-  //     const num = this.generateNumber(i);
-  //     const data: number[] = x.data as number[];
-  //     data.push(num);
-  //   });
-  //   this.lineChartLabels.push(`Label ${this.lineChartLabels.length}`);
-  // }
+  
 
   public changeColor(): void {
     this.lineChartColors[2].borderColor = 'green';

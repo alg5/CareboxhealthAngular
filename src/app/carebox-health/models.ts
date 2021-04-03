@@ -111,6 +111,39 @@ export class SummaryModel
       Active:number;
       Date:Date;
   }
+  export class StateChartModel
+  {
+      Confirmed:number;
+      Deaths:number;
+      Recovered:number;
+      Active:number;
+      Date:Date;
+  }
+  export class TotalWorldChartModel
+  {
+    total_cases:number;
+    recovery_cases:number;
+    death_cases:number;
+    currently_infected:number;
+    cases_with_outcome:number;    
+    mild_condition_active_cases:number; 
+    critical_condition_active_cases:number;     
+    recovered_closed_cases:number;   
+    death_closed_cases:number;  
+    last_update:Date;
+   }
+
+  //  {"data": {"total_cases": "130,820,485", "recovery_cases": "105,307,385", "death_cases": "2,850,523", "last_update":
+  // "Apr, 03 2021, 04:42, UTC", "currently_infected": "22,662,577", 
+  // "cases_with_outcome": "108,157,908", "mild_condition_active_cases": "22,564,825", 
+  // "critical_condition_active_cases": "97,752", "recovered_closed_cases": "105,307,385", 
+  // "death_closed_cases": "2,850,523", 
+  // "closed_cases_recovered_percentage": "97.0", 
+  // "closed_cases_death_percentage": "3.0",
+  //  "active_cases_mild_percentage": "100.0", 
+  //  "active_cases_critical_percentage": "0.0", "general_death_rate": "2.0"}, "status": "success"}
+
+
  /* date_stamp : Date; // "2020-01-23",
     cnt_confirmed : number;
     cnt_death : number;

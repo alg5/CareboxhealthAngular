@@ -1,0 +1,249 @@
+/* .container {
+
+    margin: 50px auto;
+    padding: 40px;
+
+    padding-top: 0px;
+} */
+
+
+.container h2 {
+  border-bottom: 4px solid #823FAB;
+  width:100%;
+  margin-top: 20px;
+}
+.container {
+    display: flex;
+     align-items: flex-start;
+    flex-wrap: wrap;
+    /* width: 800px; */
+    /* margin: auto; */
+    box-sizing: border-box;
+
+}
+
+
+/* .item-container {
+  width: 160px;
+  height: 160px;
+  box-sizing: border-box;
+  background-color: #99ccff;
+  border: 1px solid white;
+  cursor: pointer; 
+} */
+
+.container h2 {
+
+    border-bottom: 4px solid #823FAB;
+    /* border-bottom: 4px solid #99ccff; */
+}
+
+.container .row{
+  display: flex;
+  padding: 0 15px;
+  
+}
+.tbl-container {
+    background: #823FAB;
+    padding: 20px;
+}
+.states-block{
+    
+    display:flex;
+    /* padding: 15px; */
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: #99ccff;
+}
+.example-card {
+    max-width: 450px;
+    background-color: #fff;
+    /* padding: 16px;
+    margin: 10px 37px; */
+    padding: 10px;
+    margin: 5px 3px;
+    -webkit-box-shadow: 0 15px 10px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 15px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 10px  rgba(0,0,0,0.2);
+    /* -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    transform: rotate(-3deg); */
+  }
+  mat-card{
+    box-shadow:none! important;
+  }
+  
+  mat-card-title {
+    font-weight: bold;
+    /* font-size: 1.3em; */
+    font-size: 15px!important;
+ 
+}
+.content-row{
+  font-size:16px;
+  line-height: 1.5;
+  display: flex;
+  padding-top: 2px;
+}
+.content-row .name{
+    width: 115px;
+    font-size: 0.8em;
+    font-weight: bolder;
+}
+.content-row .value{
+
+}
+  .state-bottom-row{
+    font-size:16px;
+    text-align: right;
+    line-height: 1.5;
+}
+
+.state-bottom-row i {
+  font-weight: bold;
+}
+.no-data{
+    color: Red;
+    font-size:16px;
+}
+
+.example-element-detail {
+    overflow: hidden;
+    display: flex;
+    /* background-color: aliceblue; */
+    background-color:cornsilk;
+     width:700px;
+    height:200px;
+  }
+
+/* *************************Leumi*************** */
+.cards-container{
+    min-height: 220px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 30px auto;
+}
+/* .item-container {
+  width: 160px;
+  height: 160px;
+  box-sizing: border-box;
+  background-color: #99ccff;
+  border: 1px solid white;
+  cursor: pointer; 
+} */
+
+
+.item-container, .item-container.active {
+    /* background-color: #e5eeff; */
+    background-color: #a9fffb;
+    transition: background-color 3s;
+    height: 220px;
+    width: 25%;
+    box-sizing: border-box;
+    border: 2px solid #fff;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+    position: relative;
+    cursor: pointer;
+}
+.item-container.active {
+  /* background-color: #ccdfff; */
+  background-color: #2cd5c4;
+}
+.item-container-details{
+  /* display:none; */
+  /* height: 420px; */
+  width: 100%;
+  /* background-color: yellow; */
+  border: 1px solid #e6e6e6;
+}
+/* .item-container, .item-container.active {
+ 
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: space-around;
+  position: relative;
+  cursor: pointer;
+} */
+.item-arrow-top{
+  height: 0;
+  width: 0;
+  /* border-top: 30px solid #ccdfff; */
+  border-top: 30px solid #2cd5c4;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  position: absolute;
+  bottom: -30px;
+  left: 35%;
+  z-index: 2;
+  transition: background-color 5s;
+  transition: border-top 1s ease-in-out;
+  transition: border-left 1s ease-in-out;
+  transition: border-right 1s ease-in-out;
+}
+.item-arrow-bottom {
+  height: 0;
+  width: 0;
+  border-top: 34px solid #fff;
+  border-left: 34px solid transparent;
+  border-right: 34px solid transparent;
+  position: absolute;
+  bottom: -34px;
+  left: 35%;
+  z-index: 1;
+  transition: background-color 5s;
+  transition: border-top 1s ease-in-out;
+  transition: border-left 1s ease-in-out;
+  transition: border-right 
+}
+
+mat-card-content{
+  padding: 15px 5px;
+}
+
+
+.header {
+  /* height: 200px; */
+  width: 100%;
+  background: #eee;
+}
+
+.secondToolbar {
+position: fixed;
+background: #eee;
+top: 0;
+height: 0;
+opacity: 0;
+transition: opacity .25s ease-out, height .15s ease;
+cursor: default;
+user-select: none;
+}
+
+.sticky {
+height: 64px;
+opacity: 1;
+transition: opacity .25s ease-out, height .15s ease;
+z-index:10;
+}
+
+
+
+@media screen and (min-width: 992px) and (max-width: 1279px)
+{
+    .cards-container[_ngcontent-opq-c39], .dropdown-item-hidden, .dropdown-item-show {
+        width: 678px;
+    }
+}

@@ -15,11 +15,13 @@ import { SummaryChartLineComponent } from './components/summary-chart-line/summa
 import { ChartsModule } from 'ng2-charts';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { ChartTestComponent } from './components/chart-test/chart-test.component';
+import { StateChartBarComponent } from './components/state-chart-bar/state-chart-bar.component';
+import { TotalWorldCharComponent } from './components/total-world-char/total-world-char.component';
 
 @NgModule({
   declarations: [ SummaryComponent, StateCardsComponent, HomeComponent, StateDetailsComponent
                   , NullableNumberPipe, NotesStylePipe, SafeUrlPipe
-                  , SummaryChartLineComponent, ChartTestComponent],
+                  , SummaryChartLineComponent, ChartTestComponent, StateChartBarComponent, TotalWorldCharComponent],
   imports: [
     CommonModule,
     MaterialModule,
